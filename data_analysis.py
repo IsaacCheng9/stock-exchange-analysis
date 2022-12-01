@@ -8,7 +8,7 @@ Ideas:
     - Compare the results from LASSO and ridge regression - LASSO should be
       better according to papers?
 """
-import pandas as pd
+import pandas
 from sklearn.model_selection import train_test_split
 
 
@@ -18,13 +18,13 @@ def main():
     print(train_test_per_index.keys())
 
 
-def load_stock_data(file_name: str) -> pd.DataFrame:
-    stock_data = pd.read_csv(file_name)
+def load_stock_data(file_name: str) -> pandas.DataFrame:
+    stock_data = pandas.read_csv(file_name)
     return stock_data
 
 
 def split_train_test_per_index(
-    data_set: pd.DataFrame, training_proportion: float = 0.8
+    data_set: pandas.DataFrame, training_proportion: float = 0.8
 ) -> dict:
     """
     Splits the data set into training and test data sets for each stock index.
@@ -53,14 +53,14 @@ def split_train_test_per_index(
     return train_test_per_index
 
 
-def build_lasso_regression_model(training_data):
+def build_lasso_regression_model(training_data: pandas.DataFrame):
     """
     Builds a LASSO regression model to predict stock market prices.
     """
     pass
 
 
-def build_ridge_regression_model(training_data):
+def build_ridge_regression_model(training_data: pandas.DataFrame):
     """
     Builds a ridge regression model to predict stock market prices.
     """
