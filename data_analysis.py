@@ -14,9 +14,8 @@ from sklearn.model_selection import train_test_split
 
 def main():
     stock_data = load_stock_data("data/index_processed.csv")
-    training_data, test_data = split_data_set(stock_data)
-    print(training_data)
-    print(test_data)
+    train_test_per_index = split_train_test_per_index(stock_data)
+    print(train_test_per_index.keys())
 
 
 def load_stock_data(file_name: str) -> pd.DataFrame:
@@ -24,9 +23,11 @@ def load_stock_data(file_name: str) -> pd.DataFrame:
     return stock_data
 
 
-def split_data_set(data_set: pd.DataFrame, training_proportion: float = 0.8) -> list:
+def split_train_test_per_index(
+    data_set: pd.DataFrame, training_proportion: float = 0.8
+) -> dict:
     """
-    Splits the data set into training and test data sets.
+    Splits the data set into training and test data sets for each stock index.
 
     Args:
         data_set: The data set to split.
@@ -34,12 +35,36 @@ def split_data_set(data_set: pd.DataFrame, training_proportion: float = 0.8) -> 
                              training data set.
 
     Returns:
-        A list of the training and test data sets.
+        A dictionary of the training and test data sets for each index.
     """
-    training_data, test_data = train_test_split(
-        data_set, train_size=training_proportion
-    )
-    return [training_data, test_data]
+    # Split the data set by 'Index' column.
+    data_frames_per_index = {
+        key: data_set.loc[value]
+        for key, value in data_set.groupby("Index").groups.items()
+    }
+    # Generate a training and test data set for each index.
+    train_test_per_index = {}
+    for key, value in data_frames_per_index.items():
+        training_data, test_data = train_test_split(
+            value, train_size=training_proportion
+        )
+        train_test_per_index[key] = [training_data, test_data]
+
+    return train_test_per_index
+
+
+def build_lasso_regression_model(training_data):
+    """
+    Builds a LASSO regression model to predict stock market prices.
+    """
+    pass
+
+
+def build_ridge_regression_model(training_data):
+    """
+    Builds a ridge regression model to predict stock market prices.
+    """
+    pass
 
 
 if __name__ == "__main__":
