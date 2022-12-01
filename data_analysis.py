@@ -8,9 +8,8 @@ Ideas:
     - Compare the results from LASSO and ridge regression - LASSO should be
       better according to papers?
 """
-from typing import List
-
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 
 def main():
@@ -25,13 +24,21 @@ def load_stock_data(file_name: str) -> pd.DataFrame:
     return stock_data
 
 
-def split_data_set(
-    stock_data: pd.DataFrame, training_proportion: float = 0.8
-) -> List[pd.DataFrame]:
-    split_index = int(len(stock_data) * training_proportion)
-    # TODO: Improve the stock data split, as it's currently not random.
-    training_data = stock_data[:split_index]
-    test_data = stock_data[split_index:]
+def split_data_set(data_set: pd.DataFrame, training_proportion: float = 0.8) -> list:
+    """
+    Splits the data set into training and test data sets.
+
+    Args:
+        data_set: The data set to split.
+        training_proportion: The proportion of the data set to be used for the
+                             training data set.
+
+    Returns:
+        A list of the training and test data sets.
+    """
+    training_data, test_data = train_test_split(
+        data_set, train_size=training_proportion
+    )
     return [training_data, test_data]
 
 
