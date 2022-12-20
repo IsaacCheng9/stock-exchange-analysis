@@ -63,8 +63,17 @@ I decided to focus on predicting the adjusted close price 30 days in advance, as
 Then, I split the data into training and testing sets, with 80\% of the data being used for training and 20\% for testing. The training set will be used train the regression models and the testing set will be used to evaluate their performance.
 
 \subsection{Regression Models}
+I will apply three different regression models to generate price predictions and compare their performance.
+
+Ridge regression is a regularised linear regression model that uses L2 regularization to reduce the variance of the model. It is useful for reducing overfitting and improving the generalisation of the model.
+
+LASSO regression is another regularised linear regression model that uses L1 regularization to reduce the variance of the model. It is useful for feature selection, as it can remove features that are not important to the model.
+
+Polynomial regression is a linear regression model that uses polynomial features to fit a non-linear relationship between the input and target variables.
+
 
 \subsection{Model Evaluation}
+For each regression model, I will calculate the $R^2$ score, which is the proportion of the variance in the target variable that is predictable from the input variable. The closer the $R^2$ score is to 1, the better the model is at predicting the target variable. I will also calculate the mean absolute error, which is the average of the absolute differences between the predicted and actual values. The lower the mean absolute error, the better the model is at predicting the target variable. Finally, the root mean squared error is the square root of the mean of the squared differences between the predicted and actual values. The lower the root mean squared error, the better the model is at predicting the target variable.
 
 \section{Results}
 \subsection{Ridge Regression}
