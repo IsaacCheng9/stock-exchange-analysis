@@ -134,3 +134,5 @@ dmypy.json
 *.fls
 *.synctex.gz
 *.xdv
+*.bbl
+*.blg
