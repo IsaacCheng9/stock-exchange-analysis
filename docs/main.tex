@@ -76,6 +76,16 @@ Meanwhile, the graph of daily volume traded over time shows that market activity
 
 I also used Pearson's correlation coefficient to find the correlation between features and the adjusted close price, which is our target variable. As expected, the low, high, and open prices are highly correlated with the adjusted close price because they represent the variance of the index's price over the day. Volume appears to be correlated to adjusted close price, but not as strongly as the other features. However, it is difficult to draw conclusions from this as correlation does not imply causation.
 
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{Correlation of Open to Adjusted Close Price.png}
+        \includegraphics[width=0.6\textwidth]{Correlation of Low to Adjusted Close Price.png}
+        \includegraphics[width=0.6\textwidth]{Correlation of High to Adjusted Close Price.png}
+        \caption{Correlation of Open, Low, and High against Adjusted Close in Nasdaq Composite}
+    \end{center}
+\end{figure}
+
+
 \subsection{Feature Engineering}
 The moving average is a data smoothing technique that is used to track price movements by plotting the average prices over a period of time \cite{movingAverageChart}. It helps to  remove noise from random short-term price fluctuations in data to highlight the overall trend direction \cite{movingAverageChart}.
 
