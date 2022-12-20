@@ -55,10 +55,10 @@ The moving average is a data smoothing technique that is used to track price mov
 Simple moving averages give equal weight to each point, whereas exponential moving averages give more weight to recent points. Choosing the time period is a trade-off between noise and accuracy -- a longer period will smooth out the data more, but it will also be less accurate. I applied these techniques on each index to show how it works with different price patterns.
 
 \subsection{Data Filtering}
-I compared the different methods of calculating moving averages on the IXIC data and found that using exponential moving averages with a time period of 30 days produced the most balanced results. Hence, this will be the input data for the regression models.
+I compared the simple and exponential moving averages over 30, 90, and 360 day periods on the IXIC data. The 360 day simple and exponential moving averages were poor indicators of the adjusted close price, as they lost too much information and tracked price movements poorly. Thus, I removed them from the dataset and focused on the 30 day and 90 day exponential and simple moving averages.
 
 \subsection{Data Preprocessing}
-I decided to focus on predicting the adjusted close price 30 days in advance, as this would be useful to institutional investors who want to invest part of their monthly paycheck. Thus, I shifted the 30 day exponental average to the future by 30 days to create the input variable, with the adjusted close for that day being the target variable.
+I decided to focus on predicting the adjusted close price 30 days in advance, as this would be useful to institutional investors who want to invest part of their monthly paycheck. Thus, I shifted the values of my four input variables to the future by 30 days.
 
 Then, I split the data into training and testing sets, with 80\% of the data being used for training and 20\% for testing. The training set will be used train the regression models and the testing set will be used to evaluate their performance.
 
@@ -70,7 +70,6 @@ Ridge regression is a regularised linear regression model that uses L2 regulariz
 LASSO regression is another regularised linear regression model that uses L1 regularization to reduce the variance of the model. It is useful for feature selection, as it can remove features that are not important to the model.
 
 Polynomial regression is a linear regression model that uses polynomial features to fit a non-linear relationship between the input and target variables.
-
 
 \subsection{Model Evaluation}
 For each regression model, I will calculate the $R^2$ score, which is the proportion of the variance in the target variable that is predictable from the input variable. The closer the $R^2$ score is to 1, the better the model is at predicting the target variable. I will also calculate the mean absolute error, which is the average of the absolute differences between the predicted and actual values. The lower the mean absolute error, the better the model is at predicting the target variable. Finally, the root mean squared error is the square root of the mean of the squared differences between the predicted and actual values. The lower the root mean squared error, the better the model is at predicting the target variable.
