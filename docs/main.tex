@@ -3,6 +3,9 @@
 \usepackage[british]{babel}
 \usepackage[autostyle]{csquotes}
 \usepackage[colorlinks=true, urlcolor=blue, citecolor=blue]{hyperref}
+\usepackage{graphicx}
+
+\graphicspath{{images/}}
 
 \begin{document}
 
@@ -43,7 +46,24 @@ I loaded the CSV file into a pandas dataframe and converted the date to a dateti
 \subsection{Data Exploration}
 The dataset contains a separate CSV file that describes the index information. I loaded this into a pandas dataframe to see the stock exchange that each index corresponds to. Then, I split the data by index, as each index has different characteristics and may behave differently, and calculated the sample size for each index. I decided to focus on the Nasdaq Composite Index (IXIC) as it has the most data points.
 
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{Sample Size Per Index.png}
+        \caption{Sample Size Per Index in Dataset}
+    \end{center}
+\end{figure}
+
 Next, I calculated the distribution of features to understand patterns in the data. The distributions of open, high, low, close, and adjusted close are extremely similar, as demonstrated in the histograms -- this makes sense as open, close, and adjusted close are between the low and high for each day.
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{Distribution of Open.png}
+        \includegraphics[width=1\textwidth]{Distribution of Low.png}
+        \includegraphics[width=1\textwidth]{Distribution of High.png}
+        \includegraphics[width=1\textwidth]{Distribution of Adjusted Close.png}
+        \caption{Distribution of Open, Low, High, and Adjusted Close in Dataset}
+    \end{center}
+\end{figure}
 
 Meanwhile, the graph of daily volume traded over time shows that market activity has increased over time, which can be attributed to the rise of electronic trading making the stock market more accessible to everyone, including high-frequency trading firms.
 
