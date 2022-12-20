@@ -110,7 +110,7 @@ With an alpha value of 0.1, ridge regression achieved an $R^2$ score of 0.95623 
 \subsection{LASSO Regression}
 The hyperparameter tuning for the LASSO regression model was performed in the same way, with alpha values ranging from 0.1 to 1000.0. However, the mean test scores varied a lot more, and I found the optimal alpha value to be 1000.0, achieving a mean test score of 0.616147.
 
-With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.95243 when predicting on the test set, which was slightly worse than ridge regression.
+With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.95243 when predicting on the test set, which was slightly worse than ridge regression. Both ridge and LASSO are regularised linear regression models, so it is not surprising that they performed similarly.
 
 \subsection{Polynomial Regression}
 For the polynomial regression model, I used a pipeline to apply polynomial features to the input variables before fitting the model. I performed hyperparameter tuning on the degree of the polynomial features, testing each degree between 2 and 8. I found the optimal degree to be 2, achieving a mean test score of 0.804763.
