@@ -41,7 +41,9 @@ We are using a \href{https://www.kaggle.com/datasets/mattiuzc/stock-exchange-dat
 I loaded the CSV file into a pandas dataframe and converted the date to a datetime64 object to make it easier to work with. It originally consisted of 112457 rows. After looking at the information of the data, I noticed that there were 2204 incomplete rows, so I removed them to ensure that the data was consistent. There were also rows with trading volume recorded as 0 in earlier dates where this information was not available, so I removed them to prevent them from skewing the distribution of volume data -- this further reduced the dataset from 110253 rows to 68160 rows.
 
 \subsection{Data Exploration}
-I calculated the distribution of features to understand patterns in the data. The distributions of open, high, low, close, and adjusted close are extremely similar, as demonstrated in the histograms -- this makes sense as open, close, and adjusted close are between the low and high for each day.
+The dataset contains a separate CSV file that describes the index information. I loaded this into a pandas dataframe to see the stock exchange that each index corresponds to. Then, I split the data by index, as each index has different characteristics and may behave differently, and calculated the sample size for each index. I decided to focus on the Nasdaq Composite Index (IXIC) as it has the most data points.
+
+Next, I calculated the distribution of features to understand patterns in the data. The distributions of open, high, low, close, and adjusted close are extremely similar, as demonstrated in the histograms -- this makes sense as open, close, and adjusted close are between the low and high for each day.
 
 Meanwhile, the graph of daily volume traded over time shows that market activity has increased over time, which can be attributed to the rise of electronic trading making the stock market more accessible to everyone, including high-frequency trading firms.
 
@@ -50,13 +52,16 @@ I also used Pearson's correlation coefficient to find the correlation between fe
 \subsection{Feature Engineering}
 The moving average is a data smoothing technique that is used to track price movements by plotting the average prices over a period of time \cite{movingAverageChart}. It helps to  remove noise from random short-term price fluctuations in data to highlight the overall trend direction \cite{movingAverageChart}.
 
-Simple moving averages give equal weight to each point, whereas exponential moving averages give more weight to recent points. Choosing the time period is a trade-off between noise and accuracy -- a longer period will smooth out the data more, but it will also be less accurate. I tested different methods of calculating moving averages and found that exponential moving averages with a time period of 30 days produced the most balanced results.
+Simple moving averages give equal weight to each point, whereas exponential moving averages give more weight to recent points. Choosing the time period is a trade-off between noise and accuracy -- a longer period will smooth out the data more, but it will also be less accurate. I applied these techniques on each index to show how it works with different price patterns.
 
 \subsection{Data Filtering}
+I compared the different methods of calculating moving averages on the IXIC data and found that using exponential moving averages with a time period of 30 days produced the most balanced results. Hence, this will be the input data for the regression models.
+
+\subsection{Data Preprocessing}
 
 \subsection{Regression Models}
 
-\subsection{Models Evaluation}
+\subsection{Model Evaluation}
 
 \section{Results}
 \subsection{Ridge Regression}
