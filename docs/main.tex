@@ -41,6 +41,7 @@ We are using a \href{https://www.kaggle.com/datasets/mattiuzc/stock-exchange-dat
 I loaded the CSV file into a pandas dataframe and converted the date to a datetime64 object to make it easier to work with. It originally consisted of 112457 rows. After looking at the information of the data, I noticed that there were 2204 incomplete rows, so I removed them to ensure that the data was consistent. There were also rows with trading volume recorded as 0 in earlier dates where this information was not available, so I removed them to prevent them from skewing the distribution of volume data -- this further reduced the dataset from 110253 rows to 68160 rows.
 
 \subsection{Data Exploration}
+I calculated the distribution of features to understand patterns in the data. The distributions of open, high, low, close, and adjusted close are extremely similar, as demonstrated in the histograms -- this makes sense as open, close, and adjusted close are between the low and high for each day. 
 
 \subsection{Feature Engineering}
 
@@ -55,7 +56,7 @@ I loaded the CSV file into a pandas dataframe and converted the date to a dateti
 
 \subsection{LASSO Regression}
 
-\subsection{LSTM Regression}
+\subsection{Polynomial Regression}
 
 \section{Discussion}
 
