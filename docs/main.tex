@@ -67,6 +67,13 @@ Next, I calculated the distribution of features to understand patterns in the da
 
 Meanwhile, the graph of daily volume traded over time shows that market activity has increased over time, which can be attributed to the rise of electronic trading making the stock market more accessible to everyone, including high-frequency trading firms.
 
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{Daily Volume Traded Over Time in Nasdaq Composite.png}
+        \caption{Daily Volume Traded Over Time in Nasdaq Composite}
+    \end{center}
+\end{figure}
+
 I also used Pearson's correlation coefficient to find the correlation between features and the adjusted close price, which is our target variable. As expected, the low, high, and open prices are highly correlated with the adjusted close price because they represent the variance of the index's price over the day. Volume appears to be correlated to adjusted close price, but not as strongly as the other features. However, it is difficult to draw conclusions from this as correlation does not imply causation.
 
 \subsection{Feature Engineering}
