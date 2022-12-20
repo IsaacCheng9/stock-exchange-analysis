@@ -2,6 +2,7 @@
 
 \usepackage[british]{babel}
 \usepackage[autostyle]{csquotes}
+\usepackage[colorlinks=true, urlcolor=blue, citecolor=blue]{hyperref}
 
 \begin{document}
 
@@ -22,7 +23,7 @@ Previous studies have investigated the prediction of stock market trends with re
 \section{Methodology and Dataset}
 
 \subsection{About Stock Exchange Dataset}
-We are using a stock exchange dataset that was collected from Yahoo Finance, containing the daily price data for stock market indices across the world. Each record contains the following information for each trading day:
+We are using a \href{https://www.kaggle.com/datasets/mattiuzc/stock-exchange-data}{stock exchange dataset on Kaggle} that was collected from Yahoo Finance, containing the daily price data for stock market indices across the world. Each record in the CSV file contains the following information for each trading day:
 
 \begin{itemize}
     \setlength\itemsep{0em}
@@ -37,6 +38,7 @@ We are using a stock exchange dataset that was collected from Yahoo Finance, con
 \end{itemize}
 
 \subsection{Data Cleaning}
+I started by loading the CSV file into a pandas dataframe. 
 
 \subsection{Data Exploration}
 
