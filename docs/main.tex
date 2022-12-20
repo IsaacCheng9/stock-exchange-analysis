@@ -72,7 +72,7 @@ LASSO regression is another regularised linear regression model that uses L1 reg
 Polynomial regression is a linear regression model that uses polynomial features to fit a non-linear relationship between the input and target variables.
 
 \subsection{Model Evaluation}
-For each regression model, I will calculate the $R^2$ score, which is the proportion of the variance in the target variable that is predictable from the input variable. The closer the $R^2$ score is to 1, the better the model is at predicting the target variable. I will also calculate the mean absolute error, which is the average of the absolute differences between the predicted and actual values. The lower the mean absolute error, the better the model is at predicting the target variable. Finally, the root mean squared error is the square root of the mean of the squared differences between the predicted and actual values. The lower the root mean squared error, the better the model is at predicting the target variable.
+For each regression model, I will calculate the $R^2$ score, which is the proportion of the variance in the target variable that is predictable from the input variable. The closer the $R^2$ score is to 1.0, the better the model is at predicting the target variable. We will compare this score to the $R^2$ score of the naive benchmark that simply predicts adjusted close price based on the last price of the index.
 
 \section{Results}
 \subsection{Ridge Regression}
@@ -80,6 +80,8 @@ For each regression model, I will calculate the $R^2$ score, which is the propor
 \subsection{LASSO Regression}
 
 \subsection{Polynomial Regression}
+
+\subsection{Comparison to Naive Benchmark -- Last Value}
 
 \section{Discussion}
 
