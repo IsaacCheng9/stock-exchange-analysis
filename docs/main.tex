@@ -17,7 +17,7 @@ Historically, financial institutions have used discretionary methods to make inv
 
 In this project, we will investigate the following question: can we use regression models on stock market index data to forecast prices effectively? My initial hypothesis is that this is not possible, as the stock market is a complex system that is difficult to predict.
 
-Previous studies have investigated the prediction of stock market trends with regression on moving averages \cite{dinesh2021prediction}, but they have focused on individual stocks whereas I am focusing on a stock market index. This is a potential snag, as the index is not a direct representation of the stocks it tracks. The efficient market hypothesis also suggests that this will be difficult, as asset prices reflect all available information yet we would only be predicting according to a subset of information \cite{fama1970efficient}. 
+Previous studies have investigated the prediction of stock market trends with regression on moving averages \cite{dinesh2021prediction}, but they have focused on individual stocks whereas I am focusing on a stock market index. This is a potential snag, as the index is not a direct representation of the stocks it tracks. The efficient market hypothesis also suggests that this will be difficult, as it states that asset prices reflect all available information, yet we would only be predicting according to a subset of information \cite{fama1970efficient}. 
 
 \section{Methodology and Dataset}
 
@@ -45,7 +45,7 @@ Previous studies have investigated the prediction of stock market trends with re
 \section{Discussion}
 
 \subsection{Limitations of the Study}
-The efficient market hypothesis states that asset prices reflect all available information, which makes it difficult to get arbitrage opportunities. However, Renaissance Technologies, a hedge fund that uses systematic methods, serves as a perfect counter-example -- their Medallion Fund has achieved 66.07\% annualised returns since 1988 \cite{cornell2020medallion}.
+The efficient market hypothesis states that asset prices reflect all available information, which makes it difficult to get arbitrage opportunities. However, Renaissance Technologies, a hedge fund that uses systematic methods, serves as a perfect counter-example -- their Medallion Fund has achieved 66.07\% annualised returns since 1988 \cite{cornell2020medallion}. This suggests that it may be possible to achieve better results given access to big data and computational power, whereas in this study we relied on limited information.
 
 \subsection{Future Work}
 
