@@ -38,7 +38,7 @@ We are using a \href{https://www.kaggle.com/datasets/mattiuzc/stock-exchange-dat
 \end{itemize}
 
 \subsection{Data Cleaning}
-I loaded the CSV file into a pandas dataframe and converted the date to a datetime64 object to make it easier to work with. After looking at the information of the data, I noticed that there were 2204 incomplete rows, so I removed them to ensure that the data was consistent. There were also rows with trading volume recorded as 0 in earlier dates where this information was not available, so I removed them to prevent them from skewing the distribution of volume data -- this reduced the dataset from 112457 rows to 70364 rows.
+I loaded the CSV file into a pandas dataframe and converted the date to a datetime64 object to make it easier to work with. It originally consisted of 112457 rows. After looking at the information of the data, I noticed that there were 2204 incomplete rows, so I removed them to ensure that the data was consistent. There were also rows with trading volume recorded as 0 in earlier dates where this information was not available, so I removed them to prevent them from skewing the distribution of volume data -- this further reduced the dataset from 110253 rows to 68160 rows.
 
 \subsection{Data Exploration}
 
