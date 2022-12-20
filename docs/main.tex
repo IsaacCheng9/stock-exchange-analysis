@@ -50,6 +50,8 @@ I also used Pearson's correlation coefficient to find the correlation between fe
 \subsection{Feature Engineering}
 The moving average is a data smoothing technique that is used to track price movements by plotting the average prices over a period of time \cite{movingAverageChart}. It helps to  remove noise from random short-term price fluctuations in data to highlight the overall trend direction \cite{movingAverageChart}.
 
+Simple moving averages give equal weight to each point, whereas exponential moving averages give more weight to recent points. Choosing the time period is a trade-off between noise and accuracy -- a longer period will smooth out the data more, but it will also be less accurate. I tested different methods of calculating moving averages and found that exponential moving averages with a time period of 30 days produced the most balanced results.
+
 \subsection{Data Filtering}
 
 \subsection{Regression Models}
