@@ -58,6 +58,9 @@ Simple moving averages give equal weight to each point, whereas exponential movi
 I compared the different methods of calculating moving averages on the IXIC data and found that using exponential moving averages with a time period of 30 days produced the most balanced results. Hence, this will be the input data for the regression models.
 
 \subsection{Data Preprocessing}
+I decided to focus on predicting the adjusted close price 30 days in advance, as this would be useful to institutional investors who want to invest part of their monthly paycheck. Thus, I shifted the 30 day exponental average to the future by 30 days to create the input variable, with the adjusted close for that day being the target variable.
+
+Then, I split the data into training and testing sets, with 80\% of the data being used for training and 20\% for testing. The training set will be used train the regression models and the testing set will be used to evaluate their performance.
 
 \subsection{Regression Models}
 
