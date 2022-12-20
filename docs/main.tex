@@ -99,6 +99,14 @@ The moving average is a data smoothing technique that is used to track price mov
 Simple moving averages give equal weight to each point, whereas exponential moving averages give more weight to recent points. Choosing the time period is a trade-off between noise and accuracy -- a longer period will smooth out the data more, but it will also be less accurate. I applied these techniques on each index to show how it works with different price patterns.
 
 \subsection{Data Filtering}
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{Comparison of Moving Average Strategies for Nasdaq Composite.png}
+        \includegraphics[width=1\textwidth]{Comparison of Moving Average Strategies for Nasdaq Composite (Last 5 Years).png}
+        \caption{Comparison of Moving Average Strategies for Nasdaq Composite}
+    \end{center}
+\end{figure}
+
 I compared the simple and exponential moving averages over 30, 90, and 360 day periods on the IXIC data. The 360 day simple and exponential moving averages were poor indicators of the adjusted close price, as they lost too much information and tracked price movements poorly. Thus, I removed them from the dataset and focused on the 30 day and 90 day exponential and simple moving averages.
 
 \subsection{Data Preprocessing}
