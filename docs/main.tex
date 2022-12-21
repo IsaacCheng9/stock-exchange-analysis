@@ -120,8 +120,22 @@ Simple moving averages give equal weight to each point, whereas exponential movi
     \end{center}
 \end{figure}
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{Simple Moving Averages for N100.png}
+        \caption{Comparison of Simple  Moving Averages for N100}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{Exponential Moving Averages for N100.png}
+        \caption{Comparison of Exponential Moving Averages for N100}
+    \end{center}
+\end{figure}
+
 \subsection{Data Filtering}
-I compared the simple and exponential moving averages over 30, 90, and 360 day periods on the IXIC data. The 360 day simple and exponential moving averages were poor indicators of the adjusted close price, as they lost too much information and tracked price movements poorly. Thus, I removed them from the dataset and focused on the 30 day and 90 day exponential and simple moving averages.
+I compared the simple and exponential moving averages over 30, 90, and 360 day periods on the IXIC data. The 360 day simple and exponential moving averages were poor indicators of the adjusted close price, as they lost too much information and tracked price movements poorly. Thus, I removed them from the dataset and focused on the 30 day and 90 day simple and exponential moving averages.
 
 \begin{figure}[H]
     \begin{center}
@@ -132,7 +146,7 @@ I compared the simple and exponential moving averages over 30, 90, and 360 day p
 \end{figure}
 
 \subsection{Data Preprocessing}
-I decided to focus on predicting the adjusted close price 30 days in advance, as this would be useful to institutional investors who want to invest part of their monthly paycheck. Thus, I shifted the values of the four input variables to the future by 30 days.
+I decided to focus on predicting the adjusted close price 30 days in advance, as this would be useful to investors who want to invest part of their monthly paycheck. Thus, I shifted the values of the four input variables to the future by 30 days to remove look-ahead bias \cite{baquero2005survival}.
 
 Then, I split the data into training and testing sets, with 80\% of the data being used for training and 20\% for testing the performance of our models.
 
@@ -230,7 +244,7 @@ The efficient market hypothesis states that asset prices reflect all available i
 
 Furthermore, the stock market involves game theory between market participants \cite{allen1998finance} -- prices are an equilibrium between people going long and short \cite{thakor1991game}, so any signals that provide good predictions for future prices will be quickly discovered and priced in \cite{carfi2011fair}. This means that models that are successful on backtested data are unlikely to be successful in the future.
 
-Future analysis could focus on logarithmic returns as the target variable -- this may be a more relevant measure for investors, as they represent relative changes in prices rather than absolute changes, they are symmetric, and they are additive over time \cite{whyLogReturns}. These factors could make it easier to make predictions with a regression model.
+Future analysis could focus on logarithmic returns as the target variable -- this may be a more relevant measure for investors, as it represents relative changes in prices rather than absolute changes. It is also symmetric and additive over time \cite{whyLogReturns}, which could make it easier to develop a well-performing regression model.
 
 \begin{figure}[H]
     \begin{center}
