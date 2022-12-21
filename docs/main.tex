@@ -183,7 +183,7 @@ With an alpha value of 0.1, ridge regression achieved an $R^2$ score of 0.95623 
 \end{figure}
 
 \subsection{LASSO Regression}
-I performed hyperparameter tuning for the LASSO regression model in the same way as ridge regression, with alpha values ranging from 0.1 to 1000.0. However, the mean test scores varied a lot more, and I found the optimal alpha value to be 1000.0, achieving a mean test score of 0.616147.
+I performed hyperparameter tuning for the LASSO regression model in the same way as ridge regression, with alpha values ranging from 0.1 to 1000.0. However, the mean test scores varied a lot more and I found the optimal alpha value to be 1000.0, achieving a mean test score of 0.616147.
 
 \begin{figure}[H]
     \begin{center}
@@ -230,7 +230,7 @@ Polynomial regression performed poorly, achieving a $R^2$ score of only 0.57730 
     \end{center}
 \end{figure}
 
-To evaluate the usefulness of our results, we implemented the last value benchmark, which predicts the adjusted close price 30 days ahead by using the last value of the adjusted close price. It performed slightly better than our models, achieving an $R^2$ score of 0.96029. This suggests that our models are ineffective at forecasting prices on the Nasdaq Composite Index, and that using moving averages resulted in too much information loss. However, it may still be useful to predict general trends -- whereas the last value benchmark has a consistent lagging sentiment and is prone to outliers, our models can be more reactive to changing sentiment and less prone to outliers.
+To evaluate the usefulness of our results, we implemented the last value benchmark, which predicts the adjusted close price 30 days ahead by using the last value of the adjusted close price. It performed slightly better than our models, achieving an $R^2$ score of 0.96029. This suggests that our models are ineffective at forecasting prices on the Nasdaq Composite Index and that using moving averages resulted in too much information loss. However, it may still be useful to predict general trends -- whereas the last value benchmark has a consistent lagging sentiment and is prone to outliers, our models can be more reactive to changing sentiment and less prone to outliers.
 
 \begin{figure}[H]
     \begin{center}
