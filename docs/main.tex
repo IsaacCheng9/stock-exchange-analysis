@@ -131,6 +131,13 @@ For each regression model, I will calculate the $R^2$ score, which is the propor
 \subsection{Ridge Regression}
 I performed hyperparameter tuning on the ridge regression model using grid search with 5-fold cross validation on several values of alpha between 0.1 and 1000.0. I found the optimal alpha value was 0.1, achieving a mean test score of 0.652964, although the mean test score varied very little between alpha values.
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{Hyperparameter Tuning for Ridge Regression.png}
+        \caption{Hyperparameter Tuning for Ridge Regression}
+    \end{center}
+\end{figure}
+
 With an alpha value of 0.1, ridge regression achieved an $R^2$ score of 0.95623 when predicting on the test set.
 
 \begin{figure}[H]
@@ -143,6 +150,13 @@ With an alpha value of 0.1, ridge regression achieved an $R^2$ score of 0.95623 
 \subsection{LASSO Regression}
 The hyperparameter tuning for the LASSO regression model was performed in the same way, with alpha values ranging from 0.1 to 1000.0. However, the mean test scores varied a lot more, and I found the optimal alpha value to be 1000.0, achieving a mean test score of 0.616147.
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{Hyperparameter Tuning for LASSO Regression.png}
+        \caption{Hyperparameter Tuning for LASSO Regression}
+    \end{center}
+\end{figure}
+
 With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.95243 when predicting on the test set, which was slightly worse than ridge regression. Both ridge and LASSO are regularised linear regression models, so it is not surprising that they performed similarly.
 
 \begin{figure}[H]
@@ -154,6 +168,13 @@ With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.952
 
 \subsection{Polynomial Regression}
 For the polynomial regression model, I used a pipeline to apply polynomial features to the input variables before fitting the model. I performed hyperparameter tuning on the degree of the polynomial features, testing each degree between 2 and 8. I found the optimal degree to be 2, achieving a mean test score of 0.804763.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{Hyperparameter Tuning for Polynomial Regression.png}
+        \caption{Hyperparameter Tuning for Polynomial Regression}
+    \end{center}
+\end{figure}
 
 Polynomial regression performed poorly, achieving a $R^2$ score of only 0.57730 on the test set. This was significantly worse than the other two models, which suggests that there is a linear relationship between the input and target variables.
 
