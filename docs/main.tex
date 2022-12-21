@@ -188,7 +188,7 @@ With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.952
 \end{figure}
 
 \subsection{Polynomial Regression}
-For the polynomial regression model, I used a pipeline to apply polynomial features to the input variables before fitting the model. I performed hyperparameter tuning on the degree of the polynomial features, testing each degree between 2 and 8. I found the optimal degree to be 2, achieving a mean test score of 0.804763.
+For polynomial regression, I used a preprocessing pipeline to generate a feature matrix consisting of all polynomial combinations of the features with degree less than or equal to the specified degree before fitting the model. I performed hyperparameter tuning on the degree of the polynomial features, testing each degree between 2 and 8 -- the optimal degree was 2, achieving a mean test score of 0.804763.
 
 \begin{figure}[H]
     \begin{center}
