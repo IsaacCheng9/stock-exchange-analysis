@@ -16,13 +16,13 @@
 \maketitle
 
 \section{Introduction}
-Stock markets from across the world are tracked using indices that measure a section of the stock market, such as the Nasdaq Composite Index. Price forecasting is an important task in the financial industry as it can be used to guide strategies.
+Stock markets from across the world are tracked using indices that measure a section of the stock market, such as the Nasdaq Composite Index, which is a market capitalisation-weighted index \cite{nasdaqCompositeWeighting}. Price forecasting is an important task in the financial industry as it can be used to inform strategies.
 
 In this project, I propose the following question: can we use regression models on stock market index data to forecast prices effectively? My initial hypothesis is that this is not possible as the stock market is a complex system that is difficult to predict, but we will be able to predict general trends. I will explore the stock exchange dataset, describe our methodology, train three regression models, and discuss the outcomes.
 
 Historically, financial institutions have used discretionary methods to make investment decisions -- they rely on fundamentals and the judgement of analysts \cite{harvey2017man}. However, with the rise of big data and computational power, systematic methods have become increasingly popular -- institutions use rules-based strategies that are implemented by a computer and involve little human intervention \cite{harvey2017man}. Systematic methods enable decisions to be made quickly, which leading market makers and high-frequency trading firms such as Jane Street Capital and Hudson River Trading use to exploit arbitrage opportunities and maximise profits by trading at high volumes \cite{aldridge2013high}. However, these firms do not publicly disclose their strategies, which makes it hard to understand how they make decisions.
 
-Previous studies have investigated the prediction of stock market trends with regression on moving averages \cite{dinesh2021prediction}, but they focused on individual stocks whereas I am focusing on a stock market index. This is a potential snag, as the index is not a direct representation of the stocks it tracks. The efficient market hypothesis also suggests a potential snag, as it states that asset prices reflect all available information, yet we are only predicting on a subset of information \cite{fama1970efficient}. 
+Previous studies have investigated the prediction of stock market trends using regression on moving averages \cite{dinesh2021prediction}, but they focused on individual stocks whereas I am focusing on a stock market index. This is a potential snag, as the index is not a direct representation of the stocks it tracks. The efficient market hypothesis also suggests a potential snag, as it states that asset prices reflect all available information, yet we are only predicting on a subset of information \cite{fama1970efficient}. 
 
 \section{Methodology and Dataset}
 
@@ -132,21 +132,21 @@ I compared the simple and exponential moving averages over 30, 90, and 360 day p
 \end{figure}
 
 \subsection{Data Preprocessing}
-I decided to focus on predicting the adjusted close price 30 days in advance, as this would be useful to institutional investors who want to invest part of their monthly paycheck. Thus, I shifted the values of my four input variables to the future by 30 days.
+I decided to focus on predicting the adjusted close price 30 days in advance, as this would be useful to institutional investors who want to invest part of their monthly paycheck. Thus, I shifted the values of the four input variables to the future by 30 days.
 
-Then, I split the data into training and testing sets, with 80\% of the data being used for training and 20\% for testing. The training set will be used train the regression models and the testing set will be used to evaluate their performance.
+Then, I split the data into training and testing sets, with 80\% of the data being used for training and 20\% for testing the performance of our models.
 
 \subsection{Regression Models}
 I will apply three different regression models to compare their price prediction performance.
 
-Ridge regression is a linear regression model that uses L2 regularization to reduce the variance of the model. It is useful for reducing overfitting and improving the generalisation of the model.
+Ridge regression is a linear regression model that uses L2 regularisation to reduce the variance of the model. It is useful for reducing overfitting and improving the generalisation of the model.
 
-LASSO regression is another regularised linear regression model that uses L1 regularization to reduce the variance of the model. It is useful for feature selection, as it can remove features that are not important to the model.
+LASSO regression is another regularised linear regression model that uses L1 regularisation to reduce the variance of the model. It is useful for feature selection, as it can remove features that are not important to the model.
 
 Polynomial regression is a linear regression model that uses polynomial features to fit a non-linear relationship between the input and target variables.
 
 \subsection{Model Evaluation}
-For each regression model, I will calculate the $R^2$ score, which is the proportion of the variance in the target variable that is predictable from the input variable. The closer the $R^2$ score is to 1.0, the better the model is at predicting the target variable. We will compare this score to the $R^2$ score of the naive benchmark that simply predicts adjusted close price based on the last price of the index.
+For each regression model, I will calculate the $R^2$ score, which is the proportion of the variance in the target variable that is predictable from the input variable. The closer the $R^2$ score is to 1.0, the better the model is at predicting the target variable. We will compare this score to the $R^2$ score of the naive benchmark that predicts adjusted close price based on the last price of the index.
 
 \section{Results}
 \subsection{Ridge Regression}
@@ -159,7 +159,7 @@ I performed hyperparameter tuning on the ridge regression model using grid searc
     \end{center}
 \end{figure}
 
-With an alpha value of 0.1, ridge regression achieved an $R^2$ score of 0.95623 when predicting on the test set. The lack of difference in mean test score between alpha values suggests that a linear regression model would give a similar $R^2$ score.
+With an alpha value of 0.1, ridge regression achieved an $R^2$ score of 0.95623 when predicting on the test set. The minimal difference in mean test scores between alpha values suggests that a linear regression model would give a similar $R^2$ score.
 
 \begin{figure}[H]
     \begin{center}
@@ -169,7 +169,7 @@ With an alpha value of 0.1, ridge regression achieved an $R^2$ score of 0.95623 
 \end{figure}
 
 \subsection{LASSO Regression}
-The hyperparameter tuning for the LASSO regression model was performed in the same way, with alpha values ranging from 0.1 to 1000.0. However, the mean test scores varied a lot more, and I found the optimal alpha value to be 1000.0, achieving a mean test score of 0.616147.
+I performed hyperparameter tuning for the LASSO regression model in the same way as ridge regression, with alpha values ranging from 0.1 to 1000.0. However, the mean test scores varied a lot more, and I found the optimal alpha value to be 1000.0, achieving a mean test score of 0.616147.
 
 \begin{figure}[H]
     \begin{center}
@@ -178,7 +178,7 @@ The hyperparameter tuning for the LASSO regression model was performed in the sa
     \end{center}
 \end{figure}
 
-With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.95243 when predicting on the test set, which was slightly worse than ridge regression. Both ridge and LASSO are regularised linear regression models, so it is not surprising that they performed similarly. In the graph we can see that it was less sensitive to changes in the direction of the price, so it fared better in stable periods, but worse in volatile markets. 
+With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.95243 when predicting on the test set, which was slightly worse than ridge regression. Both ridge and LASSO are regularised linear regression models, so it is not surprising that they performed similarly. In the graph we can see that it was less sensitive to changes in the direction of the price, so it fared better in stable periods but worse in volatile markets. 
 
 \begin{figure}[H]
     \begin{center}
