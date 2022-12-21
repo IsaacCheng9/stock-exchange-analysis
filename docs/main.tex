@@ -137,7 +137,7 @@ I decided to focus on predicting the adjusted close price 30 days in advance, as
 Then, I split the data into training and testing sets, with 80\% of the data being used for training and 20\% for testing. The training set will be used train the regression models and the testing set will be used to evaluate their performance.
 
 \subsection{Regression Models}
-I will apply three different regression models to generate price predictions and compare their performance.
+I will apply three different regression models to compare their price prediction performance.
 
 Ridge regression is a linear regression model that uses L2 regularization to reduce the variance of the model. It is useful for reducing overfitting and improving the generalisation of the model.
 
@@ -226,9 +226,9 @@ To evaluate the usefulness of our results, we implemented the last value benchma
 \end{figure}
 
 \subsection{Limitations of the Study and Future Work}
-The efficient market hypothesis states that asset prices reflect all available information, which makes it difficult to get arbitrage opportunities. However, Renaissance Technologies, a hedge fund that uses systematic methods, serves as a perfect counter-example -- their Medallion Fund has achieved 66.07\% annualised returns since 1988 \cite{cornell2020medallion}. This suggests that it may be possible to achieve better results with higher quality data. Examples of this include data on a minute by minute basis rather than daily and the number of buy and sell orders on the market.
+The efficient market hypothesis states that asset prices reflect all available information \cite{fama1970efficient}, which makes it difficult to get arbitrage opportunities. However, Renaissance Technologies, a hedge fund that uses systematic methods, serves as a perfect counter-example -- their Medallion Fund has achieved 66.07\% annualised returns since 1988 \cite{cornell2020medallion}. This suggests that it may be possible to achieve better results with higher quality data. Examples of this include data on a minute by minute basis rather than daily and the number of buy and sell orders on the market.
 
-Furthermore, the stock market involves game theory between market participants -- prices are an equilibrium between people going long and short, so any signals that provide good predictions for future prices will be quickly discovered and priced in. This means that models that are successful on backtested data are unlikely to be successful in the future.
+Furthermore, the stock market involves game theory between market participants \cite{allen1998finance} -- prices are an equilibrium between people going long and short \cite{thakor1991game}, so any signals that provide good predictions for future prices will be quickly discovered and priced in \cite{carfi2011fair}. This means that models that are successful on backtested data are unlikely to be successful in the future.
 
 Future analysis could focus on logarithmic returns as the target variable -- this may be a more relevant measure for investors, as they represent relative changes in prices rather than absolute changes, they are symmetric, and they are additive over time \cite{whyLogReturns}. These factors could make it easier to make predictions with a regression model.
 
