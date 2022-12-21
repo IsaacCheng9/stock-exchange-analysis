@@ -16,13 +16,13 @@
 \maketitle
 
 \section{Introduction}
-Stock markets from across the world are tracked using indices that measure a section of the stock market, such as the Nasdaq Composite Index. Price forecasting is a very important task in the financial industry, as it can be used to guide strategies.
+Stock markets from across the world are tracked using indices that measure a section of the stock market, such as the Nasdaq Composite Index. Price forecasting is an important task in the financial industry as it can be used to guide strategies.
 
 In this project, I propose the following question: can we use regression models on stock market index data to forecast prices effectively? My initial hypothesis is that this is not possible as the stock market is a complex system that is difficult to predict, but we will be able to predict general trends. I will explore the stock exchange dataset, describe our methodology, train three regression models, and discuss the outcomes.
 
-Historically, financial institutions have used discretionary methods to make investment decisions -- they rely on fundamentals and the judgement of analysts \cite{harvey2017man}. However, with the rise of big data and computational power, systematic methods have become increasingly popular -- institutions use rules-based strategies that are implemented by a computer and involve little to no human intervention \cite{harvey2017man}. Systematic methods enable decisions to be made quickly, which leading market makers and high-frequency trading firms such as Jane Street Capital and Hudson River Trading use to exploit arbitrage opportunities and maximise profits by trading at high volumes \cite{aldridge2013high}. However, these firms do not publicly disclose their strategies, which makes it difficult to understand how they make decisions.
+Historically, financial institutions have used discretionary methods to make investment decisions -- they rely on fundamentals and the judgement of analysts \cite{harvey2017man}. However, with the rise of big data and computational power, systematic methods have become increasingly popular -- institutions use rules-based strategies that are implemented by a computer and involve little human intervention \cite{harvey2017man}. Systematic methods enable decisions to be made quickly, which leading market makers and high-frequency trading firms such as Jane Street Capital and Hudson River Trading use to exploit arbitrage opportunities and maximise profits by trading at high volumes \cite{aldridge2013high}. However, these firms do not publicly disclose their strategies, which makes it hard to understand how they make decisions.
 
-Previous studies have investigated the prediction of stock market trends with regression on moving averages \cite{dinesh2021prediction}, but they have focused on individual stocks whereas I am focusing on a stock market index. This is a potential snag, as the index is not a direct representation of the stocks it tracks. The efficient market hypothesis also suggests that this will be difficult, as it states that asset prices reflect all available information, yet we would only be predicting according to a subset of information \cite{fama1970efficient}. 
+Previous studies have investigated the prediction of stock market trends with regression on moving averages \cite{dinesh2021prediction}, but they focused on individual stocks whereas I am focusing on a stock market index. This is a potential snag, as the index is not a direct representation of the stocks it tracks. The efficient market hypothesis also suggests a potential snag, as it states that asset prices reflect all available information, yet we are only predicting on a subset of information \cite{fama1970efficient}. 
 
 \section{Methodology and Dataset}
 
@@ -38,14 +38,14 @@ We are using a \href{https://www.kaggle.com/datasets/mattiuzc/stock-exchange-dat
     \item Lowest price 
     \item Closing price adjusted for splits
     \item Adjusted closing price adjusted for both dividends and splits
-    \item Volume of shares traded 
+    \item Volume traded 
 \end{itemize}
 
 \subsection{Data Cleaning}
 I loaded the CSV file into a pandas dataframe and converted the date to a datetime64 object to make it easier to work with. It originally consisted of 112457 rows. After looking at the information of the data, I noticed that there were 2204 incomplete rows, so I removed them to ensure that the data was consistent. There were also rows with trading volume recorded as 0 in earlier dates where this information was not available, so I removed them to prevent them from skewing the distribution of volume data -- this further reduced the dataset from 110253 rows to 68160 rows.
 
 \subsection{Data Exploration}
-The dataset contains a separate CSV file that describes the index information. I loaded this into a pandas dataframe to see the stock exchange that each index corresponds to. Then, I split the data by index, as each index has different characteristics and may behave differently, and calculated the sample size for each index. I decided to focus on the Nasdaq Composite Index (IXIC) as it has the most data points.
+The dataset contains a separate CSV file that describes the index information. I loaded this into a pandas dataframe to see the stock exchange that each index corresponds to. Then, I split the data by index, as each index has different characteristics and may behave differently, and counted the sample size of each index. I decided to focus on the Nasdaq Composite Index (IXIC) as it has the most data points.
 
 \begin{figure}[H]
     \begin{center}
@@ -54,7 +54,7 @@ The dataset contains a separate CSV file that describes the index information. I
     \end{center}
 \end{figure}
 
-Next, I calculated the distribution of features to understand patterns in the data. The distributions of open, high, low, close, and adjusted close are extremely similar, as demonstrated in the histograms -- this makes sense as open, close, and adjusted close are between the low and high for each day.
+Next, I calculated the distribution of features to understand patterns in the data. The histograms show the distributions of open, low, high, and adjusted close are extremely similar -- this makes sense as open, close, and adjusted close are between the low and high for each day.
 
 \begin{figure}[H]
     \begin{center}
@@ -75,7 +75,7 @@ Meanwhile, the graph of daily volume traded over time shows that market activity
     \end{center}
 \end{figure}
 
-I also used Pearson's correlation coefficient to find the correlation between features and the adjusted close price, which is our target variable. As expected, the low, high, and open prices are highly correlated with the adjusted close price because they represent the variance of the index's price over the day. Volume appears to be correlated to adjusted close price, but it coincides with the rise of electronic trading, so it is not a useful feature for our model.
+I also used Pearson's correlation coefficient to find the correlation between features and the adjusted close price, which is our target variable. As expected, the open, low, and high prices are highly correlated with the adjusted close price because they represent the variance of the index's price over the day. Volume appears to be correlated to adjusted close price, but it coincides with the rise of electronic trading, so it is not a useful feature for our model.
 
 \begin{figure}[H]
     \begin{center}
@@ -102,9 +102,23 @@ I also used Pearson's correlation coefficient to find the correlation between fe
 
 
 \subsection{Feature Engineering}
-The moving average is a data smoothing technique that is used to track price movements by plotting the average prices over a period of time \cite{movingAverageChart}. It helps to  remove noise from random short-term price fluctuations in data to highlight the overall trend direction \cite{movingAverageChart}.
+The moving average is a data smoothing technique that is used to track price movements by plotting the average prices over a period of time \cite{movingAverageChart}. It helps to remove noise from random short-term price fluctuations in data to highlight the overall trend direction \cite{movingAverageChart}.
 
-Simple moving averages give equal weight to each point, whereas exponential moving averages give more weight to recent points. Choosing the time period is a trade-off between noise and accuracy -- a longer period will smooth out the data more, but it will also be less accurate. I applied these techniques on each index to show how it works with different price patterns.
+Simple moving averages give equal weight to each point, whereas exponential moving averages give more weight to recent points. Choosing the time period is a trade-off between noise and accuracy -- a longer period will smooth the data more at the expense of accuracy. I applied these techniques on each index to show how it works with different price patterns.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{Simple Moving Averages for NYA.png}
+        \caption{Comparison of Simple  Moving Averages for NYA}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{Exponential Moving Averages for NYA.png}
+        \caption{Comparison of Exponential Moving Averages for NYA}
+    \end{center}
+\end{figure}
 
 \subsection{Data Filtering}
 I compared the simple and exponential moving averages over 30, 90, and 360 day periods on the IXIC data. The 360 day simple and exponential moving averages were poor indicators of the adjusted close price, as they lost too much information and tracked price movements poorly. Thus, I removed them from the dataset and focused on the 30 day and 90 day exponential and simple moving averages.
@@ -125,7 +139,7 @@ Then, I split the data into training and testing sets, with 80\% of the data bei
 \subsection{Regression Models}
 I will apply three different regression models to generate price predictions and compare their performance.
 
-Ridge regression is a regularised linear regression model that uses L2 regularization to reduce the variance of the model. It is useful for reducing overfitting and improving the generalisation of the model.
+Ridge regression is a linear regression model that uses L2 regularization to reduce the variance of the model. It is useful for reducing overfitting and improving the generalisation of the model.
 
 LASSO regression is another regularised linear regression model that uses L1 regularization to reduce the variance of the model. It is useful for feature selection, as it can remove features that are not important to the model.
 
@@ -136,7 +150,7 @@ For each regression model, I will calculate the $R^2$ score, which is the propor
 
 \section{Results}
 \subsection{Ridge Regression}
-I performed hyperparameter tuning on the ridge regression model using grid search with 5-fold cross validation on several values of alpha between 0.1 and 1000.0. I found the optimal alpha value was 0.1, achieving a mean test score of 0.652964, although the mean test score varied very little between alpha values.
+I performed hyperparameter tuning on the ridge regression model using grid search with five-fold cross validation on several values of alpha between 0.1 and 1000.0. I found the optimal alpha value was 0.1, achieving a mean test score of 0.652964, although the mean test score varied very little between alpha values.
 
 \begin{figure}[H]
     \begin{center}
@@ -145,7 +159,7 @@ I performed hyperparameter tuning on the ridge regression model using grid searc
     \end{center}
 \end{figure}
 
-With an alpha value of 0.1, ridge regression achieved an $R^2$ score of 0.95623 when predicting on the test set.
+With an alpha value of 0.1, ridge regression achieved an $R^2$ score of 0.95623 when predicting on the test set. The lack of difference in mean test score between alpha values suggests that a linear regression model would give a similar $R^2$ score.
 
 \begin{figure}[H]
     \begin{center}
@@ -164,7 +178,7 @@ The hyperparameter tuning for the LASSO regression model was performed in the sa
     \end{center}
 \end{figure}
 
-With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.95243 when predicting on the test set, which was slightly worse than ridge regression. Both ridge and LASSO are regularised linear regression models, so it is not surprising that they performed similarly.
+With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.95243 when predicting on the test set, which was slightly worse than ridge regression. Both ridge and LASSO are regularised linear regression models, so it is not surprising that they performed similarly. In the graph we can see that it was less reactive to changes in the direction of the price, so it fared better in stable periods, but worse in volatile markets. 
 
 \begin{figure}[H]
     \begin{center}
@@ -183,7 +197,7 @@ For the polynomial regression model, I used a pipeline to apply polynomial featu
     \end{center}
 \end{figure}
 
-Polynomial regression performed poorly, achieving a $R^2$ score of only 0.57730 on the test set. This was significantly worse than the other two models, which suggests that there is a linear relationship between the input and target variables.
+Polynomial regression performed poorly, achieving a $R^2$ score of only 0.57730 on the test set. This was significantly worse than the other two models, which suggests that there is a linear relationship between the input and target variables and the model was overfitting.
 
 \begin{figure}[H]
     \begin{center}
@@ -202,7 +216,7 @@ Polynomial regression performed poorly, achieving a $R^2$ score of only 0.57730 
     \end{center}
 \end{figure}
 
-To evaluate the usefulness of our results, we implemented the last value benchmark, which predicts the adjusted close price 30 days in advance by simply using the last value of the adjusted close price. It performed slightly better than our models, achieving an $R^2$ score of 0.96029. This suggests that our models are ineffective at forecasting prices on the Nasdaq Composite Index. However, it may still be useful to predict general trends -- whereas the last value benchmark has a consistent lagging sentiment, our models may be able to predict when the sentiment is changing.
+To evaluate the usefulness of our results, we implemented the last value benchmark, which predicts the adjusted close price 30 days in advance by simply using the last value of the adjusted close price. It performed slightly better than our models, achieving an $R^2$ score of 0.96029. This suggests that our models are ineffective at forecasting prices on the Nasdaq Composite Index. However, it may still be useful to predict general trends -- whereas the last value benchmark has a consistent lagging sentiment, our models can be more reactive at predicting changing sentiment at times.
 
 \begin{figure}[H]
     \begin{center}
