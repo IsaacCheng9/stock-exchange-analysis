@@ -75,7 +75,14 @@ Meanwhile, the graph of daily volume traded over time shows that market activity
     \end{center}
 \end{figure}
 
-I also used Pearson's correlation coefficient to find the correlation between features and the adjusted close price, which is our target variable. As expected, the low, high, and open prices are highly correlated with the adjusted close price because they represent the variance of the index's price over the day. Volume appears to be correlated to adjusted close price, but not as strongly as the other features. However, it is difficult to draw conclusions from this as correlation does not imply causation.
+I also used Pearson's correlation coefficient to find the correlation between features and the adjusted close price, which is our target variable. As expected, the low, high, and open prices are highly correlated with the adjusted close price because they represent the variance of the index's price over the day. Volume appears to be correlated to adjusted close price, but it coincides with the rise of electronic trading, so it is not a useful feature for our model.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{Pearson's Correlation Coefficients.png}
+        \caption{Pearson's Correlation Coefficients of Features against Adjusted Close in Nasdaq Composite}
+    \end{center}
+\end{figure}
 
 \begin{figure}[H]
     \begin{center}
