@@ -178,7 +178,7 @@ The hyperparameter tuning for the LASSO regression model was performed in the sa
     \end{center}
 \end{figure}
 
-With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.95243 when predicting on the test set, which was slightly worse than ridge regression. Both ridge and LASSO are regularised linear regression models, so it is not surprising that they performed similarly. In the graph we can see that it was less reactive to changes in the direction of the price, so it fared better in stable periods, but worse in volatile markets. 
+With an alpha value of 1000.0, LASSO regression achieved an $R^2$ score of 0.95243 when predicting on the test set, which was slightly worse than ridge regression. Both ridge and LASSO are regularised linear regression models, so it is not surprising that they performed similarly. In the graph we can see that it was less sensitive to changes in the direction of the price, so it fared better in stable periods, but worse in volatile markets. 
 
 \begin{figure}[H]
     \begin{center}
@@ -216,7 +216,7 @@ Polynomial regression performed poorly, achieving a $R^2$ score of only 0.57730 
     \end{center}
 \end{figure}
 
-To evaluate the usefulness of our results, we implemented the last value benchmark, which predicts the adjusted close price 30 days in advance by simply using the last value of the adjusted close price. It performed slightly better than our models, achieving an $R^2$ score of 0.96029. This suggests that our models are ineffective at forecasting prices on the Nasdaq Composite Index. However, it may still be useful to predict general trends -- whereas the last value benchmark has a consistent lagging sentiment, our models can be more reactive at predicting changing sentiment at times.
+To evaluate the usefulness of our results, we implemented the last value benchmark, which predicts the adjusted close price 30 days ahead by using the last value of the adjusted close price. It performed slightly better than our models, achieving an $R^2$ score of 0.96029. This suggests that our models are ineffective at forecasting prices on the Nasdaq Composite Index. However, it may still be useful to predict general trends -- whereas the last value benchmark has a consistent lagging sentiment and is prone to outliers, our models can be more reactive at predicting changing sentiment and less prone to outliers.
 
 \begin{figure}[H]
     \begin{center}
