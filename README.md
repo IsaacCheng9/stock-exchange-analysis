@@ -1,2 +1,3 @@
 # stock-exchange-analysis
-Analysis of a stock exchange data set using machine learning.
+
+Forecasting prices using stock market index data with ridge, LASSO, and polynomial regression.
